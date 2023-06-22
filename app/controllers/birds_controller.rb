@@ -16,7 +16,14 @@ class BirdsController < ApplicationController
 
   def create
     # byebug
-    bird = Bird.create(name: params[:name], species: params[:species])
+    bird = Bird.create(bird_params)
     render json: bird, status: :created
+  end
+
+
+  private
+
+  def bird_params
+    params.permit(:name, :species)
   end
 end
